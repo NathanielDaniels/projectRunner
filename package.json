@@ -19,5 +19,8 @@
   "homepage": "https://github.com/NathanielDaniels/projectRunner#readme",
   "bin": {
     "projectRunner": "index.js"
+  },
+  "dependencies": {
+    "chokidar": "^3.3.1"
   }
 }
