@@ -4,6 +4,7 @@ const debounce = require("lodash.debounce");
 const chokidar = require("chokidar");
 const program = require("caporal");
 const fs = require("fs");
+const { spawn } = require("child_process");
 
 program
   .version("1.0.0")
@@ -14,11 +15,16 @@ program
     try {
       await fs.promises.access(name);
     } catch (err) {
-      throw new Error(`Could not find the file ${name}`);
+      throw new Error(`Could not find file: ${name}`);
     }
 
+    let proc;
     const start = debounce(() => {
-      console.log("STARTING USERS PROGRAM");
+      if (proc) {
+        proc.kill();
+      }
+      console.log(">>>> Starting Process");
+      proc = spawn("node", [name], { stdio: "inherit" });
     }, 100);
 
     chokidar
