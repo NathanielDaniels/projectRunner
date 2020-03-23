@@ -5,6 +5,7 @@ const chokidar = require("chokidar");
 const program = require("caporal");
 const fs = require("fs");
 const { spawn } = require("child_process");
+const chalk = require("chalk");
 
 program
   .version("1.0.0")
